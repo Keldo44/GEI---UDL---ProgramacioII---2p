@@ -11,46 +11,72 @@ public class Geometry {
     private final double cellPadding;
 
     public Geometry(int windowWidth, int windowHeight, int numCols, int numRows, double boardPadding, double cellPadding) {
-        throw new UnsupportedOperationException("Step 4");
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        this.numCols = numCols;
+        this.numRows = numRows;
+        this.boardPadding = boardPadding;
+        this.cellPadding = cellPadding;
     }
 
     public int getRows() {
-        throw new UnsupportedOperationException("Step 4");
+        return numRows;
     }
 
     public int getColumns() {
-        throw new UnsupportedOperationException("Step 4");
+        return numCols;
     }
 
     public GDimension boardDimension() {
-        throw new UnsupportedOperationException("Step 4");
+        double width = windowWidth * (1.0 - 2 * boardPadding);
+        double height = windowHeight * (1.0 - 2 * boardPadding);
+        return new GDimension(width, height);
     }
 
     public GPoint boardTopLeft() {
-        throw new UnsupportedOperationException("Step 4");
+        double x = windowWidth * boardPadding;
+        double y = windowHeight * boardPadding;
+        return new GPoint(x, y);
     }
 
     public GDimension cellDimension() {
-        throw new UnsupportedOperationException("Step 4");
+        GDimension board = boardDimension();
+        double width = board.getWidth() / numCols;
+        double height = board.getHeight() / numRows;
+        return new GDimension(width, height);
     }
 
     public GPoint cellTopLeft(int x, int y) {
-        throw new UnsupportedOperationException("Step 4");
+        GPoint boardTopLeft = boardTopLeft();
+        GDimension cell = cellDimension();
+        double cx = boardTopLeft.getX() + x * cell.getWidth();
+        double cy = boardTopLeft.getY() + y * cell.getHeight();
+        return new GPoint(cx, cy);
     }
 
     public GDimension tokenDimension() {
-        throw new UnsupportedOperationException("Step 4");
+        GDimension cell = cellDimension();
+        double width = cell.getWidth() * (1.0 - 2 * cellPadding);
+        double height = cell.getHeight() * (1.0 - 2 * cellPadding);
+        return new GDimension(width, height);
     }
 
     public GPoint tokenTopLeft(int x, int y) {
-        throw new UnsupportedOperationException("Step 4");
+        GPoint cellTopLeft = cellTopLeft(x, y);
+        GDimension cell = cellDimension();
+        double offsetX = cell.getWidth() * cellPadding;
+        double offsetY = cell.getHeight() * cellPadding;
+        return new GPoint(cellTopLeft.getX() + offsetX, cellTopLeft.getY() + offsetY);
     }
 
     public GPoint centerAt(int x, int y) {
-        throw new UnsupportedOperationException("Step 4");
+        GPoint cellTopLeft = cellTopLeft(x, y);
+        GDimension cell = cellDimension();
+        double centerX = cellTopLeft.getX() + cell.getWidth() / 2;
+        double centerY = cellTopLeft.getY() + cell.getHeight() / 2;
+        return new GPoint(centerX, centerY);
     }
 
-    //Implemented
     public Position xyToCell(double x, double y) {
         GPoint boardTopLeft = boardTopLeft();
         GDimension cellDimension = cellDimension();

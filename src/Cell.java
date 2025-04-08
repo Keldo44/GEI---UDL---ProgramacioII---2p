@@ -1,5 +1,3 @@
-
-
 public class Cell {
 
     private static final char WHITE = 'w';
@@ -8,50 +6,61 @@ public class Cell {
 
     private char state;
 
+    // Constructor privado para restringir valores inválidos
     private Cell(char state) {
-        throw new UnsupportedOperationException("Step 3");
+        this.state = state;
     }
 
+    // Fábricas estáticas de creación segura
     public static Cell empty() {
-        throw new UnsupportedOperationException("Step 3");
+        return new Cell(EMPTY);
     }
 
     public static Cell white() {
-        throw new UnsupportedOperationException("Step 3");
+        return new Cell(WHITE);
     }
 
     public static Cell black() {
-        throw new UnsupportedOperationException("Step 3");
+        return new Cell(BLACK);
     }
 
+    // Métodos de consulta
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Step 3");
+        return this.state == EMPTY;
     }
 
     public boolean isWhite() {
-        throw new UnsupportedOperationException("Step 3");
+        return this.state == WHITE;
     }
 
     public boolean isBlack() {
-        throw new UnsupportedOperationException("Step 3");
+        return this.state == BLACK;
     }
 
+    // Métodos modificadores (no se puede volver a EMPTY)
     public void setWhite() {
-        throw new UnsupportedOperationException("Step 3");
+        this.state = WHITE;
     }
 
     public void setBlack() {
-        throw new UnsupportedOperationException("Step 3");
+        this.state = BLACK;
     }
 
+    // Cambia de color si no está vacía
     public void reverse() {
-        throw new UnsupportedOperationException("Step 3");
+        if (isWhite()) {
+            setBlack();
+        } else if (isBlack()) {
+            setWhite();
+        }
+        // Si está vacía, no se hace nada
     }
 
     public String toString() {
         return String.valueOf(this.state);
     }
 
+    // Crea una celda desde un carácter
     public static Cell cellFromChar(char c) {
         return switch (c) {
             case 'w' -> white();

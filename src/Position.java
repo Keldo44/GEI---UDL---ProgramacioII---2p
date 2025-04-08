@@ -6,15 +6,16 @@ public class Position {
     private final int column;
 
     public Position(int row, int column) {
-        throw new UnsupportedOperationException("Step 1");
+        this.row = row;
+        this.column = column;
     }
 
     public int getRow() {
-        throw new UnsupportedOperationException("Step 1");
+       return this.row;
     }
 
     public int getColumn() {
-        throw new UnsupportedOperationException("Step 1");
+        return this.column;
     }
 
     // For debugging and printing
