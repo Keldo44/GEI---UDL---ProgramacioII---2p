@@ -6,12 +6,10 @@ public class Cell {
 
     private char state;
 
-    // Constructor privado para restringir valores inválidos
     private Cell(char state) {
         this.state = state;
     }
 
-    // Fábricas estáticas de creación segura
     public static Cell empty() {
         return new Cell(EMPTY);
     }
@@ -24,7 +22,6 @@ public class Cell {
         return new Cell(BLACK);
     }
 
-    // Métodos de consulta
     public boolean isEmpty() {
         return this.state == EMPTY;
     }
@@ -37,7 +34,6 @@ public class Cell {
         return this.state == BLACK;
     }
 
-    // Métodos modificadores (no se puede volver a EMPTY)
     public void setWhite() {
         this.state = WHITE;
     }
@@ -46,21 +42,18 @@ public class Cell {
         this.state = BLACK;
     }
 
-    // Cambia de color si no está vacía
     public void reverse() {
         if (isWhite()) {
             setBlack();
         } else if (isBlack()) {
             setWhite();
         }
-        // Si está vacía, no se hace nada
     }
 
     public String toString() {
         return String.valueOf(this.state);
     }
-
-    // Crea una celda desde un carácter
+    
     public static Cell cellFromChar(char c) {
         return switch (c) {
             case 'w' -> white();
