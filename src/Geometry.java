@@ -20,23 +20,21 @@ public class Geometry {
     }
 
     public int getRows() {
-        return numRows;
+        return this.numRows;
     }
 
     public int getColumns() {
-        return numCols;
+        return this.numCols;
     }
 
     public GDimension boardDimension() {
-        double width = windowWidth * (1.0 - 2 * boardPadding);
-        double height = windowHeight * (1.0 - 2 * boardPadding);
+        double width = this.windowWidth - (2 * this.boardPadding * this.windowWidth);
+        double height = this.windowHeight - (2 * this.boardPadding * this.windowHeight);
         return new GDimension(width, height);
     }
 
     public GPoint boardTopLeft() {
-        double x = windowWidth * boardPadding;
-        double y = windowHeight * boardPadding;
-        return new GPoint(x, y);
+        return new GPoint(boardPadding*this.windowWidth, boardPadding*this.windowHeight);
     }
 
     public GDimension cellDimension() {
@@ -56,17 +54,15 @@ public class Geometry {
 
     public GDimension tokenDimension() {
         GDimension cell = cellDimension();
-        double width = cell.getWidth() * (1.0 - 2 * cellPadding);
-        double height = cell.getHeight() * (1.0 - 2 * cellPadding);
+        double width = cell.getWidth() - (2 * this.cellPadding*cell.getWidth());
+        double height = cell.getHeight() - (2 * this.cellPadding*cell.getHeight());
         return new GDimension(width, height);
     }
 
     public GPoint tokenTopLeft(int x, int y) {
         GPoint cellTopLeft = cellTopLeft(x, y);
         GDimension cell = cellDimension();
-        double offsetX = cell.getWidth() * cellPadding;
-        double offsetY = cell.getHeight() * cellPadding;
-        return new GPoint(cellTopLeft.getX() + offsetX, cellTopLeft.getY() + offsetY);
+        return new GPoint(cellTopLeft.getX()+this.cellPadding * cell.getWidth(), cellTopLeft.getY()+this.cellPadding * cell.getHeight());
     }
 
     public GPoint centerAt(int x, int y) {
@@ -77,6 +73,7 @@ public class Geometry {
         return new GPoint(centerX, centerY);
     }
 
+    //Implemented
     public Position xyToCell(double x, double y) {
         GPoint boardTopLeft = boardTopLeft();
         GDimension cellDimension = cellDimension();

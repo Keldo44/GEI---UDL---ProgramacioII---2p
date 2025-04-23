@@ -1,3 +1,4 @@
+
 import java.util.StringTokenizer;
 
 public class Board {
@@ -22,73 +23,40 @@ public class Board {
     }
 
     private void initBoard() {
-        int size = size();
-        for (int row = 0; row < size; row++) {
-            for (int col = 0; col < size; col++) {
-                cells[row][col] = Cell.empty(); // celda vacía por defecto
-            }
-        }
-
-        // Posiciones centrales
-        int mid1 = size / 2 - 1;
-        int mid2 = size / 2;
-
-        setWhite(new Position(mid1, mid1));
-        setWhite(new Position(mid2, mid2));
-        setBlack(new Position(mid1, mid2));
-        setBlack(new Position(mid2, mid1));
+        throw new UnsupportedOperationException("Step 5.1");
     }
+
 
     public int size() {
         return 2 * order;
     }
 
     public boolean contains(Position position) {
-        int row = position.getRow();
-        int col = position.getColumn();
-        return row >= 0 && row < size() && col >= 0 && col < size();
+        throw new UnsupportedOperationException("Step 5.1");
     }
 
     public boolean isEmpty(Position position) {
-        return contains(position) && cells[position.getRow()][position.getColumn()].isEmpty();
+        throw new UnsupportedOperationException("Step 5.1");
     }
 
     public boolean isWhite(Position position) {
-        return contains(position) && cells[position.getRow()][position.getColumn()].isWhite();
+        throw new UnsupportedOperationException("Step 5.1");
     }
 
     public boolean isBlack(Position position) {
-        return contains(position) && cells[position.getRow()][position.getColumn()].isBlack();
+        throw new UnsupportedOperationException("Step 5.1");
     }
 
     public void setWhite(Position position) {
-        if (isEmpty(position)) {
-            cells[position.getRow()][position.getColumn()].setWhite();
-            white++;
-        }
-        if (display != null) display.setWhite(position);
+        throw new UnsupportedOperationException("Step 5.2");
     }
 
     public void setBlack(Position position) {
-        if (isEmpty(position)) {
-            cells[position.getRow()][position.getColumn()].setBlack();
-            black++;
-        }
-        if (display != null) display.setBlack(position);
+        throw new UnsupportedOperationException("Step 5.2");
     }
 
     public void reverse(Position position) {
-        if(!isEmpty(position) && contains(position)){
-            cells[position.getRow()][position.getColumn()].reverse();
-            if(cells[position.getRow()][position.getColumn()].isBlack()){
-                black++;
-                white--;
-            }else{
-                black--;
-                white++;
-            }
-        }
-        if (display != null) display.reverse(position);
+        throw new UnsupportedOperationException("Step 5.2");
     }
 
     public void loadBoard(String str) {

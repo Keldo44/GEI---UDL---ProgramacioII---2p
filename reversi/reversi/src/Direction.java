@@ -19,14 +19,10 @@ public class Direction {
     private final int changeInColumn;
 
     private Direction(int changeInRow, int changeInColumn) {
-        this.changeInRow = changeInRow;
-        this.changeInColumn = changeInColumn;
+        throw new UnsupportedOperationException("Step 2");
     }
 
     public Position move(Position position) {
-        return new Position(
-                position.getRow() + this.changeInRow,
-                position.getColumn() + this.changeInColumn
-        );
+        throw new UnsupportedOperationException("Step 2");
     }
 }
